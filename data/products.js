@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -655,6 +655,37 @@ const products = [
       "hoodies",
       "apparel",
       "mens"
+    ]
+  },
+  {
+    id: "bc2847e9-5323-403f-b7cf-57fde077a955",
+    image: "images/products/backpack.jpg",
+    name: "Regular Black Backpack",
+    rating: {
+      stars: 4.5,
+      count: 77
+    },
+    priceCents: 7700,
+    keywords: [
+      "backpack",
+      "bag",
+      "school product",
+      "students"
+    ]
+  },
+  {
+    id: "bc2847e9-5323-403f-b7cf-57fde088a955",
+    image: "images/products/umbrella.jpg",
+    name: "Solid black umbrella",
+    rating: {
+      stars: 4,
+      count: 88
+    },
+    priceCents: 8800,
+    keywords: [
+      "umbrella",
+      "rain",
+      "black umbrella"
     ]
   }
 ];
