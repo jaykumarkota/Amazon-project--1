@@ -1,5 +1,8 @@
-import {cart,addProductToCart,updateCartQuantity} from '../data/cart.js';
+import {cart,addProductToCart,updateCartQuantity, saveCartToStorage} from '../data/cart.js';
 import {products} from '../data/products.js';
+import {priceCentsToDollers} from './utils/money.js';
+
+updateCartQuantity();
 
 let productsHTML = ``;
 
@@ -24,7 +27,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${priceCentsToDollers(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -70,17 +73,14 @@ AddToCartButton.forEach((button,i) => {
     const quantitySelectButton = document.querySelector(`.js-quantity-selector-${productId}`);
     const addedToCartMsg = document.querySelector(`.js-added-to-cart-${productId}`);
     const quantity = Number(quantitySelectButton.value);
-
     addProductToCart(productId,quantity);
     updateCartQuantity();
-
     clearTimeout(timeoutId);
-
       addedToCartMsg.classList.add('added-to-cart-visible');
       timeoutId = setTimeout(() => {
       addedToCartMsg.classList.remove('added-to-cart-visible');
     },2000);
-
+    saveCartToStorage();
   });
 });
 
