@@ -13,6 +13,7 @@ import {
 import { getMatchingProduct, products } from "../../data/products.js";
 import { priceCentsToDollers } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 export function renderOrderSummary() {
   let cartHTML = "";
@@ -102,6 +103,7 @@ export function renderOrderSummary() {
       removeFromCart(productId);
       updateCartQuantityForCheckout();
       document.querySelector(`.js-cart-item-container-${productId}`).remove();
+      renderPaymentSummary();
     });
   });
 
@@ -137,6 +139,7 @@ export function renderOrderSummary() {
               `.js-quantity-label-${cartItemId}`
             ).innerHTML = quantity;
             saveCartToStorage();
+            renderPaymentSummary();
           }
         });
       } else {
@@ -185,6 +188,7 @@ export function renderOrderSummary() {
       const { cartItemId, deliveryOptionId } = option.dataset;
       updateDeliveryOption(cartItemId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 }
