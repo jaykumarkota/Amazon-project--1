@@ -63,6 +63,8 @@ products.forEach((product) => {
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
 const AddToCartButton = document.querySelectorAll(".js-add-to-cart-button");
+const cartQuantityHome = document.querySelector(".cart-quantity");
+cartQuantityHome.innerHTML = updateCartQuantity();
 
 let timeoutId;
 
@@ -74,7 +76,7 @@ AddToCartButton.forEach((button,i) => {
     const addedToCartMsg = document.querySelector(`.js-added-to-cart-${productId}`);
     const quantity = Number(quantitySelectButton.value);
     addProductToCart(productId,quantity);
-    updateCartQuantity();
+    cartQuantityHome.innerHTML = updateCartQuantity();
     clearTimeout(timeoutId);
       addedToCartMsg.classList.add('added-to-cart-visible');
       timeoutId = setTimeout(() => {
