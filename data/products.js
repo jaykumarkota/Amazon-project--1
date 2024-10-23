@@ -1,3 +1,5 @@
+import { priceCentsToDollers } from "../scripts/utils/money.js";
+//gives matching product
 export function getMatchingProduct(productId) {
   let matchingProduct;
 
@@ -7,6 +9,29 @@ export function getMatchingProduct(productId) {
     }
   });
   return matchingProduct;
+}
+
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getImageUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice() {
+    return `$${priceCentsToDollers(this.priceCents)}`;
+  }
 }
 
 export const products = [
@@ -502,4 +527,7 @@ export const products = [
     priceCents: 8800,
     keywords: ["umbrella", "rain", "black umbrella"],
   },
-];
+].map((product) => {
+  //converting literal objects into class objects
+  return new Product(product);
+});
